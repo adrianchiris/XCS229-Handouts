@@ -237,7 +237,7 @@ replace it with the following algorithm:
 
 By grouping the updates of the coordinates into an update of the vector $\theta$, we can rewrite update~\eqref{eqn:gd} in a slightly more succinct way:
 \begin{align}
-\theta := \theta + \alpha \sum_{i=1}^\di \left(\ysi - h_\theta(\xsi)\right) x^{(i)} \nonumber
+\theta := \theta + \alpha \sum_{i=1}^\nexp \left(\ysi - h_\theta(\xsi)\right) x^{(i)} \nonumber
 \end{align}
 
 The reader can easily verify that the quantity in the summation in the update rule above
