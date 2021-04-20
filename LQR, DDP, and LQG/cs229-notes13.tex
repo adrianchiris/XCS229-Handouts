@@ -270,13 +270,13 @@ we want to compute $ V_t^* $. If we go back to section \ref{sec:1}, we can apply
 	\begin{align*}
 		V_{t}^*(s_t) &= s_{t}^\top \Phi_{t} s_{t} + \Psi_{t}\\
 		&= \max_{a_t} \left[R^{(t)}(s_t, a_t) + \mathbb{E}_{s_{t+1} \sim P^{(t)}_{s_t, a_t} } [ V_{t+1}^* (s_{t+1} ) ] \right]\\
-		&= \max_{a_t} \left[- s_t^\top U_t s_t - a_t^\top V_t a_t  + \mathbb{E}_{s_{t+1} \sim \mathcal{N}\left(A_t s_t + B_t a_t, \Sigma_t \right) } [ s_{t+1}^\top \Phi_{t+1} s_{t+1} + \Psi_{t+1} ] \right]
+		&= \max_{a_t} \left[- s_t^\top U_t s_t - a_t^\top W_t a_t  + \mathbb{E}_{s_{t+1} \sim \mathcal{N}\left(A_t s_t + B_t a_t, \Sigma_t \right) } [ s_{t+1}^\top \Phi_{t+1} s_{t+1} + \Psi_{t+1} ] \right]
 	\end{align*}
 	 
 	 where the second line is just the definition of the optimal value function and the third line is obtained by plugging in the dynamics of our model along with the quadratic assumption. Notice that the last expression is a quadratic function in $ a_t $ and can thus be (easily) optimized\footnote{Use the identity $ \mathbb{E}\left[ w_t^\top \Phi_{t+1} w_t \right] = \operatorname{Tr}(\Sigma_t \Phi_{t+1}) $ with $ w_t \sim \mathcal{N}\left(0, \Sigma_t \right) $}. We get the optimal action $ a_t^* $
 	 
 	 \begin{align*}
-	 a_t^* &= \left[ (B_t^\top \Phi_{t+1} B_t - V_t)^{-1} B_t \Phi_{t+1} A_t \right] \cdot s_t\\
+	 a_t^* &= - \left[ (B_t^\top \Phi_{t+1} B_t - V_t)^{-1} B_t \Phi_{t+1} A_t \right] \cdot s_t\\
 	  &= L_t \cdot s_t \\
 	 \end{align*}
 	 
@@ -286,7 +286,7 @@ we want to compute $ V_t^* $. If we go back to section \ref{sec:1}, we can apply
 	 
 	 \begin{align*}
 	 	\Phi_t &= A_t^\top \left( \Phi_{t+1} - \Phi_{t+1} B_t \left( B_t^\top \Phi_{t+1} B_t - W_t\right)^{-1} B_t \Phi_{t+1}\right) A_t - U_t \\
-	 	\Psi_t &= - \operatorname{tr}\left(\Sigma_t \Phi_{t+1}\right) + \Psi_{t+1}
+	 	\Psi_t &= \operatorname{tr}\left(\Sigma_t \Phi_{t+1}\right) + \Psi_{t+1}
 	 \end{align*}
 	 
 	 \underline{Fact 3:} we notice that $ \Phi_t $ depends on neither $ \Psi $ nor the noise $ \Sigma_t $!  As $ L_t $ is a function of $ A_t, B_t $ and $ \Phi_{t+1} $, it implies that the optimal policy also \textbf{does not depend on the noise}! (But $ \Psi_t $ does depend on $ \Sigma_t $, which implies that $ V_t^* $ depends on $ \Sigma_t $.)
